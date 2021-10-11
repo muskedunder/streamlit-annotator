@@ -52,12 +52,14 @@ with st.form(key='add-label', clear_on_submit=True):
         st.session_state.available_labels.append(new_label)
 
 def show_sample(container, idx):
-    with container.container():
-        st.markdown(f"Date: `{dataset[idx]['date']}`")
-        st.markdown(f"Review: `{dataset[idx]['review']}`")
+    if idx < len(dataset):
+        with container.container():
+            st.markdown(f"Date: `{dataset[idx]['date']}`")
+            st.markdown(f"Review: `{dataset[idx]['review']}`")
 
 def set_label(label, idx):
-    st.session_state.annotations[dataset[idx]['id']] = label
+    if idx < len(dataset):
+        st.session_state.annotations[dataset[idx]['id']] = label
 
 with st.form('labeling', clear_on_submit=True):
 
@@ -75,9 +77,8 @@ with st.form('labeling', clear_on_submit=True):
 
     if submit or skip:
         st.session_state.idx += 1
-        if st.session_state.idx < len(dataset):
-            show_sample(data_container, st.session_state.idx)
-        else:
+        show_sample(data_container, st.session_state.idx)
+        if st.session_state.idx >= len(dataset):
             data_container.text("No more data to annotate")
 
 st.write(st.session_state.annotations)
