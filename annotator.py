@@ -51,15 +51,15 @@ with st.form(key='add-label', clear_on_submit=True):
     if submitted and new_label != "" and new_label not in st.session_state.available_labels:
         st.session_state.available_labels.append(new_label)
 
-def show_sample(container, idx):
-    if idx < len(dataset):
-        with container.container():
-            st.markdown(f"Date: `{dataset[idx]['date']}`")
-            st.markdown(f"Review: `{dataset[idx]['review']}`")
+def show_sample(streamlit_placeholder, sample_idx):
+    if sample_idx < len(dataset):
+        with streamlit_placeholder.container():
+            st.markdown(f"Date: `{dataset[sample_idx]['date']}`")
+            st.markdown(f"Review: `{dataset[sample_idx]['review']}`")
 
-def set_label(label, idx):
-    if idx < len(dataset):
-        st.session_state.annotations[dataset[idx]['id']] = label
+def set_label(label, sample_idx):
+    if sample_idx < len(dataset):
+        st.session_state.annotations[dataset[sample_idx]['id']] = label
 
 with st.form('labeling', clear_on_submit=True):
 
