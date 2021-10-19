@@ -1,5 +1,5 @@
 # streamlit-annotator
-A simple template for annotation of data using streamlit.
+A simple template for annotation of data using streamlit, as described in my blogpost [here](https://www.colin.land/posts/streamlit-annotator).
 Try it out here: https://share.streamlit.io/muskedunder/streamlit-annotator/main/annotator.py
 
 Install dependencies
